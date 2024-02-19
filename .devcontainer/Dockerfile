@@ -1,4 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/base:ubuntu
+# syntax=docker/dockerfile:1
+
+FROM eclipse-temurin:17-jdk-jammy
 
 # Install the xz-utils package
 RUN apt-get update && \

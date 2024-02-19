@@ -268,6 +268,7 @@ class Client {
         textbox = wordFactory.CreateTextbox();
     }
 
+    // RUn the client
     public void Run() {
         panel.DisplayName(panel);
         button.DisplayName(button);
@@ -277,16 +278,20 @@ class Client {
 
 public class Main {
     public static void main(String[] args) {
+        // Read the generations from the configuration file
         List<String> generations = readConfigurationFile("config.txt");
         if (generations == null) {
             System.out.println("Error reading configuration file.");
             return;
         }
 
+        // Iterate over each generation and test its GUI components
         for (String generation : generations) {
             System.out.println("Testing " + generation + "...");
+            // Get the factory for the current generation
             WordFactory factory = getFactory(generation);
             if (factory != null) {
+                // Create a client with the factory and run the test
                 Client client = new Client(factory);
                 client.Run();
             }
@@ -294,6 +299,7 @@ public class Main {
         }
     }
 
+    // Method to read the generations from the configuration file
     private static List<String> readConfigurationFile(String filename) {
         List<String> generations = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filename))) {
@@ -308,6 +314,7 @@ public class Main {
         return generations;
     }
 
+    // Method to get the factory for a given generation
     private static WordFactory getFactory(String generation) {
         switch (generation) {
             case "Word90":
